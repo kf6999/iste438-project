@@ -15,6 +15,13 @@ import (
 	"time"
 )
 
+type Flag struct {
+	//Id             primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	//Code           string             `json:"code,omitempty" bson:"code,omitempty"`
+	//Country        string             `json:"country,omitempty" bson:"country,omitempty"`
+	Flag_image_url string `json:"flag_image_url,omitempty" bson:"flag_image_url,omitempty"`
+}
+
 type Product struct {
 	Id                            primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	AverageTemperature            float64            `json:"averagetemperature,omitempty" bson:"averagetemperature,omitempty"`
@@ -25,6 +32,7 @@ type Product struct {
 	Longitude                     string             `json:"longitude,omitempty" bson:"longitude,omitempty"`
 	Dt                            string             `json:"dt,omitempty" bson:"dt,omitempty"`
 	Comment                       string             `json:"comment,omitempty" bson:"comment,omitempty"`
+	Flag                          Flag               `json:"flag,omitempty" bson:"flag,omitempty"`
 }
 
 type Comment struct {
@@ -214,10 +222,10 @@ func main() {
 		}
 
 		return c.JSON(fiber.Map{
-			"data":      products,
-			"total":     total,
-			"page":      page,
-			"last_page": math.Ceil(float64(total / perPage)),
+			"data":        products,
+			"total_pages": total,
+			"page":        page,
+			"last_page":   math.Ceil(float64(total / perPage)),
 		})
 	})
 
