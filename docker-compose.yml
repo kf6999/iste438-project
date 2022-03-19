@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  # MongoDB
+  mongo:
+    image: mongo
+    container_name: 'mongo'
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongodata:/data/db
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    restart: always
+networks:
+  default:
+    name: goroutes-network

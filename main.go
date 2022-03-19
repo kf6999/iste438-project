@@ -41,8 +41,16 @@ type Comment struct {
 }
 
 func main() {
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	client, _ := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+	//client, _ := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+	//client, _ := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://mongodb:27017"))
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://mongo:27017"))
+	defer func() {
+		if err = client.Disconnect(ctx); err != nil {
+			panic(err)
+		}
+	}()
 	db := client.Database("Project")
 	app := fiber.New()
 
@@ -229,5 +237,5 @@ func main() {
 		})
 	})
 
-	app.Listen(":8000")
+	app.Listen(":8080")
 }
