@@ -1,3 +1,4 @@
+// +heroku goVersion go1.18
 module github.com/kf6999/iste438-project
 
 go 1.18
