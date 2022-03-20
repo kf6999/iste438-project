@@ -11,6 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"math"
+	"os"
 	"strconv"
 	"time"
 )
@@ -236,6 +237,9 @@ func main() {
 			"last_page":   math.Ceil(float64(total / perPage)),
 		})
 	})
-
-	app.Listen(":80")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Default port if not specified
+	}
+	app.Listen(":" + port)
 }
