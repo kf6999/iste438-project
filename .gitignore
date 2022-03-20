@@ -1,1 +1,4 @@
 mongodata
+.nvimlog
+.idea
+.DS_store
