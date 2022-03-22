@@ -17,9 +17,6 @@ import (
 )
 
 type Flag struct {
-	//Id             primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	//Code           string             `json:"code,omitempty" bson:"code,omitempty"`
-	//Country        string             `json:"country,omitempty" bson:"country,omitempty"`
 	Flag_image_url string `json:"flag_image_url,omitempty" bson:"flag_image_url,omitempty"`
 }
 
@@ -42,11 +39,16 @@ type Comment struct {
 }
 
 func main() {
-	//client, _ := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
-	//client, _ := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://mongodb:27017"))
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://159.65.220.66:27017"))
+	user := os.Getenv("USER")
+	pass := os.Getenv("PASS")
+	credential := options.Credential{
+		AuthSource: "Project",
+		Username:   user,
+		Password:   pass,
+	}
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://159.65.220.66:27017").SetAuth(credential))
 	defer func() {
 		if err = client.Disconnect(ctx); err != nil {
 			panic(err)
@@ -78,7 +80,7 @@ func main() {
 			},
 		)
 		if err != nil {
-			log.Fatal(err)
+			return fiber.ErrServiceUnavailable
 		}
 		fmt.Printf("Updated %v Documents!\n", result.ModifiedCount)
 
@@ -239,7 +241,7 @@ func main() {
 	})
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080" // Default port if not specified
+		port = "8080"
 	}
 	app.Listen(":" + port)
 }
