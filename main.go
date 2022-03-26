@@ -88,7 +88,6 @@ func main() {
 			"message": "Comment successfully inserted",
 		})
 	})
-
 	app.Get("/api/temps/show", func(c *fiber.Ctx) error {
 		collection := db.Collection("CityTemps")
 		ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
@@ -216,7 +215,7 @@ func main() {
 		}
 
 		page, _ := strconv.Atoi(c.Query("page", "1"))
-		var perPage int64 = 9
+		var perPage int64 = 5
 
 		total, _ := collection.CountDocuments(ctx, filter)
 
