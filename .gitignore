@@ -11,6 +11,8 @@
 # production
 /build
 
+.idea
+
 package-lock.json
 
 # misc
