@@ -63,9 +63,9 @@ function Search(props) {
     return (
         <div className="search-container">
             <Form className="search-form" onSubmit={(e) => {e.preventDefault();}}>
-                <p>search by keyword: </p>
+                <p>Search by Keyword: </p>
                 <Form.Group>
-                    <Form.Control className="search-form-input" type="search" value={search} placeholder="city, state, etc." onChange={(e) => {setSearch(e.target.value); if(e.target.value === "") {props.searchDatabase([], []);}}} />
+                    <Form.Control className="search-form-input" type="search" value={search} placeholder="City or Country." onChange={(e) => {setSearch(e.target.value); if(e.target.value === "") {props.searchDatabase([], []);}}} />
                 </Form.Group>
                 <Button type="button" className="search-form-button" onClick={(e) => attemptSearch("search")}>Search</Button>
 
