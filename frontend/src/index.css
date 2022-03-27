@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.header-section {
+  margin-top: 3em;
+}
+
+.header-section h1 {
+  font-size: 48pt;
+}
+
+.city-temps-results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pagination {
+  margin: 2em auto;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1em !important;
+}
+
+.card-title, .card-subtitle {
+  margin-bottom: 0 !important;
+}
+
+.city-temp-body {
+  width: 100%;
+  display: inline-block;
+}
+
+.city-temp-right {
+  width: 35%;
+  min-height: 100px;
+}
+
+.city-temp-left {
+  width: 60%;
+  float: right;
+}
+
+.city-temp-left p {
+  margin: 0;
+}
+
+.city-temp-left, .city-temp-right {
+  margin-bottom: 2em;
+}
+
+.comments-container {
+  margin-bottom: 2em;
+}
+
+.add-comment-input {
+  margin-bottom: 1em;
+}
+
+.add-comment-button {
+  position: relative;
+  left: 72%;
+}
