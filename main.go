@@ -155,7 +155,7 @@ func main() {
 
 	app.Get("/api/temps/showAll", func(c *fiber.Ctx) error {
 		collection := db.Collection("CityTemps")
-		ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+		ctx, _ := context.WithTimeout(context.Background(), 300*time.Second)
 
 		var products []Product
 
