@@ -215,7 +215,7 @@ func main() {
 		}
 
 		page, _ := strconv.Atoi(c.Query("page", "1"))
-		var perPage int64 = 5
+		var perPage int64 = 3
 
 		total, _ := collection.CountDocuments(ctx, filter)
 
