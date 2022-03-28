@@ -155,10 +155,8 @@ func main() {
 
 	app.Get("/api/temps/showAll", func(c *fiber.Ctx) error {
 		collection := db.Collection("CityTemps")
-		ctx, err := context.WithTimeout(context.Background(), 500*time.Second)
-		if err != nil {
-			return fiber.ErrBadGateway
-		}
+		ctx, _ := context.WithTimeout(context.Background(), 500*time.Second)
+
 		var products []Product
 
 		filter := bson.M{}
