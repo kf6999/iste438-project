@@ -39,7 +39,7 @@ type Comment struct {
 }
 
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 	defer cancel()
 	user := os.Getenv("USER")
 	pass := os.Getenv("PASS")
