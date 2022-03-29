@@ -52,6 +52,10 @@ code {
   min-height: 100px;
 }
 
+.city-temp-right img {
+  width: 100%;
+}
+
 .city-temp-left {
   width: 60%;
   float: right;

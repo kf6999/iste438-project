@@ -20,6 +20,10 @@ function ItemModal({cityTemp, attemptComment, ...props}) {
         comment: comment
     }
 
+    if (cityTemp.comment) {
+      cityTemp.comment = comment;
+    }
+
     attemptComment(data);
   }
 
@@ -41,11 +45,11 @@ function ItemModal({cityTemp, attemptComment, ...props}) {
           <p>Latitude: {cityTemp.latitude}</p>
           <p>Longitude: {cityTemp.longitude}</p>
         </div>
-        { cityTemp.flag.flag_image_url &&
-          <div className='city-temp-right'>
+        <div className='city-temp-right'>
+          { cityTemp.flag.flag_image_url &&
             <img alt={cityTemp.city + " flag"} src={cityTemp.flag.flag_image_url}></img>
-          </div>
-        }
+          }
+        </div>
 
 
         { cityTemp.comment &&
@@ -89,15 +93,8 @@ function App() {
       console.log(error);
     });
 
-    setIsBusy(true);
-    showAll().then((temps) => {
-      setCityTemps(temps.data);
-      setPage(temps.page);
-      setMaxPage(temps.last_page);
-      setIsBusy(false);
-    }).catch((error) => {
-      console.log(error);
-    });
+    // setIsBusy(true);
+    // changePage(page);
   }
 
   const searchDatabase = (search, type) => {
@@ -370,7 +367,7 @@ function App() {
       { isBusy &&
         <p>loading...</p>
       }
-      { !isBusy && 
+      { (!isBusy && cityTemps !== null ) && 
         <div className="city-temps-results-container">
           { cityTemps === null ? <p>no results</p> :
             cityTemps.map((data) => {
